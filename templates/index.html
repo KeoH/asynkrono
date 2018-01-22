@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Index{% endblock %}
+
+{% block content %}
+    <h1>Index</h1>
+    <ul>
+        {% for figure in figures %}
+        <li style="display: inline-block;">
+            <div style="width: 300px;">
+                <img src="{{figure.image}}" alt="{{figure.name}}">
+                <p>{{figure.name}}
+                    <span>| {{ figure.price.amount }} €  - ({{ figure.price.date.strftime('%d/%m/%Y %H:%M:%S') }})</span>
+                </p>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    <div class="paginator">
+        {% if page > 1 %}
+            <div style="display:inline-block; width:30px;"><a href="/?page=1"><<</a></div>
+        {% endif %}
+        {% if page > 1 %}
+            <div style="display:inline-block; width:30px;"><a href="/?page={{page-1}}"><</a></div>
+        {% endif %}
+        {% if page + 1 < total_pages %}
+            <div style="display:inline-block; width:30px;"><a href="/?page={{page+1}}">{{page+1}}</a></div>
+        {% endif %}
+        {% if page + 2 < total_pages %}
+            <div style="display:inline-block; width:30px;"><a href="/?page={{page+2}}">{{page+2}}</a></div>
+        {% endif %}
+        {% if page + 3 < total_pages %}
+            <div style="display:inline-block; width:30px;"><a href="/?page={{page+3}}">{{page+3}}</a></div>
+        {% endif %}
+        <div style="display:inline-block; width:30px;"> ... </div>
+        <div style="display:inline-block; width:30px;"><a href="/?page={{total_pages-3}}">{{total_pages-3}}</a></div>
+        <div style="display:inline-block; width:30px;"><a href="/?page={{total_pages-2}}">{{total_pages-2}}</a></div>
+        <div style="display:inline-block; width:30px;"><a href="/?page={{total_pages-1}}">{{total_pages-1}}</a></div>
+        {% if page < total_pages %}
+            <div style="display:inline-block; width:30px;"><a href="/?page={{page+1}}">></a></div>
+        {% endif %}
+        {% if page < total_pages %}
+            <div style="display:inline-block; width:30px;"><a href="/?page={{total_pages}}">>></a></div>
+        {% endif %}
+    </div>
+    <p>Figures: {{ total_figures }}</p>
+{% endblock %}
