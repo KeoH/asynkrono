@@ -5,7 +5,7 @@ from models import Figure, Price
 from db import db
 BASE_URL = 'http://www.raccoongames.es'
 
-def process_page(html):
+async def process_page(html):
     soup = BeautifulSoup(html)
     products = soup.find_all('div', 'producto-lst')
 

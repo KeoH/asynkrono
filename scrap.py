@@ -15,7 +15,7 @@ async def fetch(session, page):
 
     async with session.get('{}/{}'.format(POP_URL, page)) as response:
         print("Terminado pagina {}".format(page))    
-        return process_page(await response.text())
+        return await process_page(await response.text())
 
 
 for page in range(1, LAST_PAGE+1):
