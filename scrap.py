@@ -3,9 +3,9 @@ import aiohttp, asyncio, async_timeout, signal, sys
 
 from process_html import process_page
 
-POP_URL = 'http://www.raccoongames.es/es/productos/figuras-estatuas/funko'
+POP_URL = 'http://www.raccoongames.es/es/productos/figuras-estatuas'
 
-LAST_PAGE = 190  # en la web pone q hay 205 paginas pero es mentira
+LAST_PAGE = 244  # en la web pone q hay 205 paginas pero es mentira
 
 loop = asyncio.get_event_loop()  
 client = aiohttp.ClientSession(loop=loop)

@@ -3,6 +3,7 @@ from decimal import Decimal
 from datetime import datetime
 from models import Figure, Price
 from db import db
+
 BASE_URL = 'http://www.raccoongames.es'
 
 async def process_page(html):

@@ -28,14 +28,3 @@ app.router.add_static('/static/',
 
 # starts the server
 web.run_app(app, host='127.0.0.1', port=8080)
-
-# El servidor web es bloqueante y no se ejecuta los websocket
-
-# async def echo(websocket, path):
-#     async for message in websocket:
-#         await websocket.send(message)
-
-# asyncio.get_event_loop().run_until_complete(
-#     websockets.serve(echo, 'localhost', 8765)
-# )
-# asyncio.get_event_loop().run_forever()
