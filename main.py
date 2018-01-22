@@ -3,19 +3,18 @@
 '''
 
 from aiohttp import web
-import aiohttp_jinja2, jinja2, os
+import aiohttp_jinja2, jinja2
 from db import db
 from views import setup_views
 import asyncio, websockets
+from settings import BASE_DIR, STATIC_ROOT, TEMPLATES_ROOT
 
-#constant
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 app = web.Application()
 
 # template engine config
 aiohttp_jinja2.setup(
-    app, loader = jinja2.FileSystemLoader(os.path.join(BASE_DIR, 'templates'))
+    app, loader = jinja2.FileSystemLoader(TEMPLATES_ROOT)
 )
 
 # view routing
@@ -23,7 +22,7 @@ setup_views(app)
 
 #static files config
 app.router.add_static('/static/',
-    path = os.path.join(BASE_DIR, 'static'),
+    path = STATIC_ROOT,
     name = 'static')
 
 

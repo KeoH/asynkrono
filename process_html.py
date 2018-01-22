@@ -10,23 +10,28 @@ async def process_page(html):
     products = soup.find_all('div', 'producto-lst')
 
     for product in products:
-        data = {
-            'name' : product.img['alt'],
-            'image' : '{}{}'.format(BASE_URL, product.img['src']),
-            'price' : float(Decimal(product.find_all('span', 'precio-actual')[0].text[2:].replace(',','.')))
-        }
-        
-        try:
-            figure = Figure.objects.get(name=data['name'])
-        except Figure.DoesNotExist:
-            figure = Figure.objects.create(
-                name = data['name'],
-                image = data['image']
-            )
+        await process_product(product)
 
-        price = Price(
-            date = datetime.now(),
-            amount = data['price']
+
+async def process_product(product):
+    print("Procesando producto: {}".format(product.img['alt']))
+    data = {
+        'name' : product.img['alt'],
+        'image' : '{}{}'.format(BASE_URL, product.img['src']),
+        'price' : float(Decimal(product.find_all('span', 'precio-actual')[0].text[2:].replace(',','.')))
+    }
+    
+    try:
+        figure = Figure.objects.get(name=data['name'])
+    except Figure.DoesNotExist:
+        figure = Figure.objects.create(
+            name = data['name'],
+            image = data['image']
         )
-        figure.prices.append(price)
-        figure.save()
+
+    price = Price(
+        date = datetime.now(),
+        amount = data['price']
+    )
+    figure.prices.append(price)
+    figure.save()
