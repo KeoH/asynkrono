@@ -1,0 +1,12 @@
+version: '3'
+services:
+  database:
+    image: mongo
+  web:
+    build: .
+    command: python3 main.py
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/code
+

@@ -1,12 +1,14 @@
 # asynkrono
 Pruebas con las librerias iohttp y asyncio
 
-## Para lanzar el "scraper"
+
+## Docker
+
+Para usar docker solo ejecutar el contenedor con docker-compose
+
 ```
-python scrap.py
+docker-compose up
 ```
 
-## Para ver la web
-```
-python main.py
-```
+Para hacer el scrap con docker, modificar el archivo docker-compose.yml, cambiando el comando
+a `python3 scrap` y ejecutarlo.

@@ -5,5 +5,6 @@
 
 from mongoengine import connect
 
-db = connect('asynkrono', host='localhost', port=27017)
+# Esta es la puta manera de que docker lo coja!
+db = connect(host="mongodb://database/asynckrono")
 
